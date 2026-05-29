@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Contact Us — Travex Digital Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#080A0F;--dark:#0D1017;--navy:#0D1B3E;--blue:#1B3A6B;
+  --gold:#C9A84C;--gold2:#F0C96B;--gold3:#E8B84B;
+  --white:#fff;--offwhite:#F8F9FC;--gray:#6B7280;--lgray:#E5E7EB;
+  --text:#E8E9EB;--text2:#9CA3AF;--green:#059669;--red:#DC2626;
+}
+html{scroll-behavior:smooth}
+body{font-family:"Inter",sans-serif;background:var(--black);color:var(--text);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(8,10,15,0.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,0.12);padding:0 5%;height:70px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-brand{text-decoration:none;display:flex;flex-direction:column;gap:2px}
+.nav-logo{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:800;color:var(--white);line-height:1;letter-spacing:0.02em}
+.nav-logo span{color:var(--gold)}
+.nav-sub{font-size:0.5rem;color:rgba(201,168,76,0.5);letter-spacing:0.25em;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-link{color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.8rem;font-weight:500;transition:color 0.2s;letter-spacing:0.01em}
+.nav-link:hover,.nav-link.active{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:0.75rem}
+.btn-visit{background:transparent;color:var(--gold);padding:0.42rem 1.1rem;font-size:0.75rem;font-weight:700;text-decoration:none;border:1px solid rgba(201,168,76,0.4);transition:all 0.2s;letter-spacing:0.03em}
+.btn-visit:hover{background:var(--gold);color:var(--black)}
+.nav-burger{display:none;background:none;border:none;color:var(--white);font-size:1.4rem;cursor:pointer}
+
+/* HERO BASE */
+.hero{min-height:500px;background:var(--black);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:70px}
+.hero-glow-left{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.08),transparent 65%);top:-150px;left:-150px;pointer-events:none}
+.hero-glow-right{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(13,27,62,0.6),transparent 65%);bottom:-100px;right:-100px;pointer-events:none}
+.hero-line{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent)}
+.hero-content{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:5rem 5%;width:100%}
+.hero-tag{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);color:rgba(201,168,76,0.8);padding:0.32rem 0.9rem;font-size:0.62rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5rem}
+.hero-h1{font-family:"Playfair Display",serif;font-size:clamp(2.2rem,5vw,4.2rem);font-weight:900;color:var(--white);line-height:1.05;margin-bottom:0.75rem}
+.hero-h1 .gold{color:var(--gold);font-style:italic}
+.hero-sub{font-size:0.95rem;color:var(--text2);line-height:1.85;max-width:580px;font-weight:300}
+
+/* SECTION */
+.section{padding:5.5rem 5%}
+.section-dark{background:var(--dark)}
+.section-navy{background:var(--navy)}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{font-size:0.62rem;font-weight:700;color:rgba(201,168,76,0.7);text-transform:uppercase;letter-spacing:0.22em;margin-bottom:0.75rem}
+.section-h2{font-family:"Playfair Display",serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:0.6rem}
+.section-h2 .gold{color:var(--gold);font-style:italic}
+.section-desc{font-size:0.9rem;color:var(--text2);line-height:1.85;max-width:600px;font-weight:300}
+
+/* DIVIDER */
+.gold-line{height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);margin:0}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* FOOTER */
+footer{background:#04060C;border-top:1px solid rgba(201,168,76,0.1);padding:4rem 5% 2rem}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;padding-bottom:3rem;margin-bottom:0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.footer-logo{font-family:"Playfair Display",serif;font-size:1.15rem;font-weight:800;color:var(--white);margin-bottom:0.75rem;letter-spacing:0.02em}
+.footer-logo span{color:var(--gold)}
+.footer-tagline{font-size:0.8rem;color:rgba(255,255,255,0.25);line-height:1.75;margin-bottom:1.2rem}
+.footer-contacts{display:flex;flex-direction:column;gap:0.5rem}
+.footer-contacts a{font-size:0.78rem;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s;display:flex;align-items:center;gap:0.4rem}
+.footer-contacts a:hover{color:var(--gold)}
+.f-col-title{font-size:0.58rem;font-weight:700;color:rgba(201,168,76,0.4);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:1rem}
+.f-col a{display:block;font-size:0.8rem;color:rgba(255,255,255,0.3);text-decoration:none;margin-bottom:0.6rem;transition:color 0.2s}
+.f-col a:hover{color:var(--gold)}
+.footer-bottom{padding-top:2rem;text-align:center;font-size:0.72rem;color:rgba(255,255,255,0.15)}
+
+/* BUTTONS */
+.btn-gold{display:inline-flex;align-items:center;gap:0.5rem;background:var(--gold);color:var(--black);padding:0.85rem 2rem;font-size:0.875rem;font-weight:700;text-decoration:none;transition:all 0.3s;letter-spacing:0.02em}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,0.3)}
+.btn-outline{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:rgba(255,255,255,0.7);padding:0.85rem 2rem;font-size:0.875rem;font-weight:500;text-decoration:none;transition:all 0.3s;border:1px solid rgba(255,255,255,0.15)}
+.btn-outline:hover{border-color:rgba(201,168,76,0.5);color:var(--gold)}
+
+@media(max-width:768px){.footer-top{grid-template-columns:1fr;gap:2rem}}
+@media(max-width:600px){nav{padding:0 4%}.nav-links{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(8,10,15,0.98);padding:2rem 5%;flex-direction:column;gap:1.2rem;border-bottom:1px solid rgba(201,168,76,0.1)}.nav-links.open{display:flex}.nav-burger{display:block}.section{padding:4rem 4%}.btn-visit{display:none}}
+
+.contact-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:start}
+.cm{display:flex;gap:1rem;padding:1.1rem 1.4rem;border:1px solid rgba(255,255,255,0.05);background:var(--dark);margin-bottom:0.6rem;text-decoration:none;transition:all 0.2s}
+.cm:hover{border-color:rgba(201,168,76,0.2);transform:translateX(4px)}
+.cm-icon{width:40px;height:40px;background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.12);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.cm-t{font-size:0.75rem;font-weight:700;color:var(--white);margin-bottom:0.15rem}
+.cm-v{font-size:0.72rem;color:var(--text2);font-weight:300}
+.cf{background:var(--dark);border:1px solid rgba(255,255,255,0.06);padding:2.5rem}
+.cf-title{font-family:"Playfair Display",serif;font-size:1.25rem;font-weight:800;color:var(--white);margin-bottom:0.35rem}
+.cf-sub{font-size:0.78rem;color:var(--text2);margin-bottom:1.8rem;line-height:1.6;font-weight:300}
+.fg{margin-bottom:1.1rem}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fl{display:block;font-size:0.65rem;font-weight:600;color:rgba(255,255,255,0.35);margin-bottom:0.35rem;text-transform:uppercase;letter-spacing:0.1em}
+.fl span{color:var(--gold)}
+.fi{width:100%;padding:0.72rem 1rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);font-family:"Inter",sans-serif;font-size:0.875rem;color:var(--white);outline:none;transition:border-color 0.2s}
+.fi:focus{border-color:rgba(201,168,76,0.35)}
+.fi::placeholder{color:rgba(255,255,255,0.18)}
+.fs{width:100%;padding:0.72rem 1rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);font-family:"Inter",sans-serif;font-size:0.875rem;color:var(--white);outline:none;cursor:pointer}
+.fs option{background:var(--dark)}
+.fta{width:100%;padding:0.72rem 1rem;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);font-family:"Inter",sans-serif;font-size:0.875rem;color:var(--white);outline:none;resize:vertical;min-height:110px}
+.fta:focus{border-color:rgba(201,168,76,0.35)}
+.fta::placeholder{color:rgba(255,255,255,0.18)}
+.bs{width:100%;padding:0.88rem;background:var(--gold);color:var(--black);font-size:0.9rem;font-weight:700;border:none;cursor:pointer;font-family:"Inter",sans-serif;transition:all 0.2s;letter-spacing:0.03em}
+.bs:hover{background:var(--gold2)}.bs:disabled{opacity:0.4;cursor:not-allowed}
+.al{padding:0.7rem 1rem;font-size:0.8rem;margin-bottom:1rem;display:none;border:1px solid}
+.al.show{display:block}
+.al-ok{background:rgba(5,150,105,0.08);border-color:rgba(5,150,105,0.2);color:var(--green)}
+.al-err{background:rgba(220,38,38,0.08);border-color:rgba(220,38,38,0.2);color:#F87171}
+.nb{background:rgba(13,27,62,0.4);border:1px solid rgba(201,168,76,0.1);border-left:2px solid var(--gold);padding:1.1rem 1.4rem;margin-top:1.5rem}
+.nb-t{font-size:0.62rem;font-weight:700;color:rgba(201,168,76,0.6);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.4rem}
+.nb-v{font-size:0.76rem;color:var(--text2);line-height:1.65;font-weight:300}
+@media(max-width:768px){.contact-layout{grid-template-columns:1fr}.fr{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><a href="index.html" class="nav-brand"><div class="nav-logo">TRAVEX <span>DIGITAL</span> GROUP</div><div class="nav-sub">Innovate · Connect · Grow</div></a><div class="nav-links" id="navLinks"><a href="index.html" class="nav-link ">Home</a><a href="story.html" class="nav-link ">Our Story</a><a href="team.html" class="nav-link ">Team</a><a href="products.html" class="nav-link ">Products</a><a href="contact.html" class="nav-link active">Contact</a></div><div class="nav-right"><a href="https://travex-mall.vercel.app" class="btn-visit">Travex Mall →</a><button class="nav-burger" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button></div></nav>
+<section class="hero" style="text-align:center">
+  <div class="hero-glow-left"></div><div class="hero-glow-right"></div><div class="hero-line"></div>
+  <div class="hero-content" style="text-align:center">
+    <div class="hero-tag" style="display:inline-flex">// Contact Us</div>
+    <h1 class="hero-h1" style="text-align:center">Let's Build Something<br><span class="gold">Great Together</span></h1>
+    <p class="hero-sub" style="margin:0.75rem auto 0;text-align:center">Whether you're a seller, partner, investor or just curious — we'd love to hear from you.</p>
+  </div>
+</section>
+<div class="gold-line"></div>
+<section class="section section-dark">
+  <div class="section-inner">
+    <div class="contact-layout reveal">
+      <div>
+        <div class="section-label">// Reach Out</div>
+        <h2 class="section-h2" style="margin-bottom:0.75rem">Get In <span class="gold">Touch</span></h2>
+        <p style="font-size:0.85rem;color:var(--text2);line-height:1.75;margin-bottom:1.8rem;font-weight:300">Expect a response within 24 hours. WhatsApp is usually fastest.</p>
+        <a href="mailto:travexmall15@gmail.com" class="cm"><div class="cm-icon">📧</div><div><div class="cm-t">Email</div><div class="cm-v">travexmall15@gmail.com</div></div></a>
+        <a href="https://wa.me/255651919915" target="_blank" class="cm"><div class="cm-icon">💬</div><div><div class="cm-t">WhatsApp — Primary</div><div class="cm-v">+255 651 919 915</div></div></a>
+        <a href="https://wa.me/255657575950" target="_blank" class="cm"><div class="cm-icon">💬</div><div><div class="cm-t">WhatsApp — Secondary</div><div class="cm-v">+255 657 575 950</div></div></a>
+        <div class="cm" style="cursor:default"><div class="cm-icon">📍</div><div><div class="cm-t">Location</div><div class="cm-v">Dar es Salaam, Tanzania 🇹🇿</div></div></div>
+        <div class="cm" style="cursor:default"><div class="cm-icon">🏦</div><div><div class="cm-t">CRDB Bank</div><div class="cm-v">Account: 0152774556100</div></div></div>
+        <div class="nb"><div class="nb-t">Response Times</div><div class="nb-v">WhatsApp: Within 30 minutes<br>Email: Within 24 hours<br>Store activation: Within 2 hours of payment</div></div>
+      </div>
+      <div class="cf">
+        <div class="cf-title">Send Us a Message</div>
+        <div class="cf-sub">Fill in the form below — we'll respond as soon as possible.</div>
+        <div class="al al-ok" id="ok"></div><div class="al al-err" id="er"></div>
+        <div class="fr"><div class="fg"><label class="fl">Full Name <span>*</span></label><input type="text" class="fi" id="cn" placeholder="Your full name"></div><div class="fg"><label class="fl">Email / Phone <span>*</span></label><input type="text" class="fi" id="ce" placeholder="Email or phone"></div></div>
+        <div class="fg"><label class="fl">Subject <span>*</span></label><select class="fs" id="cs"><option value="">Select subject</option><option>I want to open a store on Travex Mall</option><option>Question about subscription plans</option><option>Technical support</option><option>Partnership / Collaboration</option><option>Investment inquiry</option><option>Media / Press inquiry</option><option>Other</option></select></div>
+        <div class="fg"><label class="fl">Message <span>*</span></label><textarea class="fta" id="cm" placeholder="Tell us how we can help..."></textarea></div>
+        <button class="bs" id="sb" onclick="send()">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">TRAVEX <span>DIGITAL</span> GROUP</div>
+        <p class="footer-tagline">Innovate · Connect · Grow<br>Building Africa's intelligent digital ecosystem<br>from Dar es Salaam, Tanzania.</p>
+        <div class="footer-contacts">
+          <a href="mailto:travexmall15@gmail.com">📧 travexmall15@gmail.com</a>
+          <a href="https://wa.me/255651919915" target="_blank">💬 +255 651 919 915</a>
+          <a href="https://wa.me/255657575950" target="_blank">💬 +255 657 575 950</a>
+          <a>📍 Dar es Salaam, Tanzania 🇹🇿</a>
+        </div>
+      </div>
+      <div class="f-col">
+        <div class="f-col-title">Company</div>
+        <a href="index.html">Home</a>
+        <a href="story.html">Our Story</a>
+        <a href="team.html">Team</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="f-col">
+        <div class="f-col-title">Products</div>
+        <a href="https://travex-mall.vercel.app">Travex Mall</a>
+        <a href="https://travex-mall.vercel.app/campus.html">Travex Campus</a>
+        <a href="https://travex-mall.vercel.app/vybe.html">Travex Social Vybe</a>
+        <a href="#">Travex Stay</a>
+        <a href="#">Travex Move</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Travex Digital Group. All rights reserved. Incorporated in Tanzania 🇹🇿</div>
+  </div>
+</footer>
+<script>
+const SU="https://bscecjbgnjitlfmgwcic.supabase.co",SK="sb_publishable_giz1AS9CcdTiksOrW5U0rQ_yY5kkzos";
+const {createClient}=supabase;const db=createClient(SU,SK);
+async function send(){
+  const n=document.getElementById("cn").value.trim(),e=document.getElementById("ce").value.trim(),s=document.getElementById("cs").value,m=document.getElementById("cm").value.trim();
+  const btn=document.getElementById("sb"),ok=document.getElementById("ok"),er=document.getElementById("er");
+  er.classList.remove("show");ok.classList.remove("show");
+  if(!n||!e||!s||!m){er.textContent="Please fill in all required fields.";er.classList.add("show");return;}
+  btn.textContent="Sending...";btn.disabled=true;
+  try{await db.from("contact_messages").insert({name:n,email:e,subject:s,message:m});}catch(x){}
+  ok.textContent="✅ Message sent! We will get back to you soon.";ok.classList.add("show");
+  setTimeout(()=>window.open(`https://wa.me/255651919915?text=${encodeURIComponent(`Hello Travex Digital Group!\nName: ${n}\nContact: ${e}\nSubject: ${s}\n\n${m}`)}`, "_blank"),600);
+  document.getElementById("cn").value="";document.getElementById("ce").value="";document.getElementById("cs").value="";document.getElementById("cm").value="";
+  btn.textContent="Send Message →";btn.disabled=false;
+}
+</script>
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach((en,i)=>{if(en.isIntersecting)setTimeout(()=>en.target.classList.add("visible"),i*90)})},{threshold:0.07});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+</script>
+</body></html>

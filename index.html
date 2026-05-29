@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Travex Digital Group — Innovate. Connect. Grow.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#080A0F;--dark:#0D1017;--navy:#0D1B3E;--blue:#1B3A6B;
+  --gold:#C9A84C;--gold2:#F0C96B;--gold3:#E8B84B;
+  --white:#fff;--offwhite:#F8F9FC;--gray:#6B7280;--lgray:#E5E7EB;
+  --text:#E8E9EB;--text2:#9CA3AF;--green:#059669;--red:#DC2626;
+}
+html{scroll-behavior:smooth}
+body{font-family:"Inter",sans-serif;background:var(--black);color:var(--text);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(8,10,15,0.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,0.12);padding:0 5%;height:70px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-brand{text-decoration:none;display:flex;flex-direction:column;gap:2px}
+.nav-logo{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:800;color:var(--white);line-height:1;letter-spacing:0.02em}
+.nav-logo span{color:var(--gold)}
+.nav-sub{font-size:0.5rem;color:rgba(201,168,76,0.5);letter-spacing:0.25em;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-link{color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.8rem;font-weight:500;transition:color 0.2s;letter-spacing:0.01em}
+.nav-link:hover,.nav-link.active{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:0.75rem}
+.btn-visit{background:transparent;color:var(--gold);padding:0.42rem 1.1rem;font-size:0.75rem;font-weight:700;text-decoration:none;border:1px solid rgba(201,168,76,0.4);transition:all 0.2s;letter-spacing:0.03em}
+.btn-visit:hover{background:var(--gold);color:var(--black)}
+.nav-burger{display:none;background:none;border:none;color:var(--white);font-size:1.4rem;cursor:pointer}
+
+/* HERO BASE */
+.hero{min-height:500px;background:var(--black);display:flex;align-items:center;position:relative;overflow:hidden;padding-top:70px}
+.hero-glow-left{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.08),transparent 65%);top:-150px;left:-150px;pointer-events:none}
+.hero-glow-right{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(13,27,62,0.6),transparent 65%);bottom:-100px;right:-100px;pointer-events:none}
+.hero-line{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent)}
+.hero-content{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:5rem 5%;width:100%}
+.hero-tag{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);color:rgba(201,168,76,0.8);padding:0.32rem 0.9rem;font-size:0.62rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5rem}
+.hero-h1{font-family:"Playfair Display",serif;font-size:clamp(2.2rem,5vw,4.2rem);font-weight:900;color:var(--white);line-height:1.05;margin-bottom:0.75rem}
+.hero-h1 .gold{color:var(--gold);font-style:italic}
+.hero-sub{font-size:0.95rem;color:var(--text2);line-height:1.85;max-width:580px;font-weight:300}
+
+/* SECTION */
+.section{padding:5.5rem 5%}
+.section-dark{background:var(--dark)}
+.section-navy{background:var(--navy)}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{font-size:0.62rem;font-weight:700;color:rgba(201,168,76,0.7);text-transform:uppercase;letter-spacing:0.22em;margin-bottom:0.75rem}
+.section-h2{font-family:"Playfair Display",serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:0.6rem}
+.section-h2 .gold{color:var(--gold);font-style:italic}
+.section-desc{font-size:0.9rem;color:var(--text2);line-height:1.85;max-width:600px;font-weight:300}
+
+/* DIVIDER */
+.gold-line{height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent);margin:0}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* FOOTER */
+footer{background:#04060C;border-top:1px solid rgba(201,168,76,0.1);padding:4rem 5% 2rem}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;padding-bottom:3rem;margin-bottom:0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.footer-logo{font-family:"Playfair Display",serif;font-size:1.15rem;font-weight:800;color:var(--white);margin-bottom:0.75rem;letter-spacing:0.02em}
+.footer-logo span{color:var(--gold)}
+.footer-tagline{font-size:0.8rem;color:rgba(255,255,255,0.25);line-height:1.75;margin-bottom:1.2rem}
+.footer-contacts{display:flex;flex-direction:column;gap:0.5rem}
+.footer-contacts a{font-size:0.78rem;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s;display:flex;align-items:center;gap:0.4rem}
+.footer-contacts a:hover{color:var(--gold)}
+.f-col-title{font-size:0.58rem;font-weight:700;color:rgba(201,168,76,0.4);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:1rem}
+.f-col a{display:block;font-size:0.8rem;color:rgba(255,255,255,0.3);text-decoration:none;margin-bottom:0.6rem;transition:color 0.2s}
+.f-col a:hover{color:var(--gold)}
+.footer-bottom{padding-top:2rem;text-align:center;font-size:0.72rem;color:rgba(255,255,255,0.15)}
+
+/* BUTTONS */
+.btn-gold{display:inline-flex;align-items:center;gap:0.5rem;background:var(--gold);color:var(--black);padding:0.85rem 2rem;font-size:0.875rem;font-weight:700;text-decoration:none;transition:all 0.3s;letter-spacing:0.02em}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,0.3)}
+.btn-outline{display:inline-flex;align-items:center;gap:0.5rem;background:transparent;color:rgba(255,255,255,0.7);padding:0.85rem 2rem;font-size:0.875rem;font-weight:500;text-decoration:none;transition:all 0.3s;border:1px solid rgba(255,255,255,0.15)}
+.btn-outline:hover{border-color:rgba(201,168,76,0.5);color:var(--gold)}
+
+@media(max-width:768px){.footer-top{grid-template-columns:1fr;gap:2rem}}
+@media(max-width:600px){nav{padding:0 4%}.nav-links{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(8,10,15,0.98);padding:2rem 5%;flex-direction:column;gap:1.2rem;border-bottom:1px solid rgba(201,168,76,0.1)}.nav-links.open{display:flex}.nav-burger{display:block}.section{padding:4rem 4%}.btn-visit{display:none}}
+
+/* PARTICLES */
+.particle{position:absolute;width:1px;height:1px;background:var(--gold);border-radius:50%;opacity:0;animation:floatUp linear infinite;pointer-events:none}
+@keyframes floatUp{0%{transform:translateY(100vh);opacity:0}10%{opacity:0.4}90%{opacity:0.1}100%{transform:translateY(-50px);opacity:0}}
+/* HERO SPECIFIC */
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;margin:2rem 0 3rem}
+.hero-stats{display:flex;gap:0;border:1px solid rgba(201,168,76,0.12)}
+.stat-box{padding:1.2rem 2rem;border-right:1px solid rgba(201,168,76,0.12)}
+.stat-box:last-child{border-right:none}
+.stat-val{font-family:"Playfair Display",serif;font-size:1.8rem;font-weight:900;color:var(--gold);line-height:1}
+.stat-lbl{font-size:0.58rem;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.15em;margin-top:6px}
+/* PRODUCT CARDS */
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,0.1);margin-bottom:1px}
+.p-card{background:var(--dark);padding:2rem 1.8rem;transition:all 0.3s;position:relative;overflow:hidden;text-decoration:none;display:block}
+.p-card::after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.3s}
+.p-card:hover{background:#111520}.p-card:hover::after{opacity:1}
+.p-card-status{font-size:0.58rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem}
+.status-live{color:var(--green)}
+.status-soon{color:rgba(255,255,255,0.25)}
+.p-card-icon{font-size:2rem;margin-bottom:1rem;display:block}
+.p-card-name{font-family:"Playfair Display",serif;font-size:1.1rem;font-weight:800;color:var(--white);margin-bottom:0.4rem}
+.p-card-desc{font-size:0.8rem;color:var(--text2);line-height:1.65;margin-bottom:1rem;font-weight:300}
+.p-card-arrow{font-size:0.75rem;color:rgba(201,168,76,0.6);font-weight:600}
+.p-card.coming{cursor:default}
+/* HIGHLIGHT SECTION */
+.highlight-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.h-left .section-h2{margin-bottom:1.2rem}
+.h-left p{font-size:0.9rem;color:var(--text2);line-height:1.85;margin-bottom:1.5rem;font-weight:300}
+.h-features{display:flex;flex-direction:column;gap:0.65rem;margin-bottom:2rem}
+.h-feature{display:flex;align-items:center;gap:0.75rem;font-size:0.875rem;color:var(--text2)}
+.h-dot{width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0}
+.h-right{border:1px solid rgba(201,168,76,0.12);background:rgba(13,27,62,0.3)}
+.h-stat-row{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.04)}
+.h-stat-row:last-child{border-bottom:none}
+.h-stat-label{font-size:0.78rem;color:rgba(255,255,255,0.3)}
+.h-stat-value{font-family:"Playfair Display",serif;font-size:1rem;font-weight:700;color:var(--gold)}
+/* VALUES */
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.04)}
+.v-card{background:var(--black);padding:2rem;transition:background 0.3s}
+.v-card:hover{background:var(--dark)}
+.v-icon{font-size:1.8rem;margin-bottom:1rem}
+.v-title{font-size:0.9rem;font-weight:700;color:var(--white);margin-bottom:0.4rem}
+.v-text{font-size:0.8rem;color:var(--text2);line-height:1.7;font-weight:300}
+@media(max-width:900px){.products-grid{grid-template-columns:1fr 1fr}.highlight-layout{grid-template-columns:1fr}.values-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.products-grid{grid-template-columns:1fr}.hero-stats{flex-direction:column}.stat-box{border-right:none;border-bottom:1px solid rgba(201,168,76,0.12)}.stat-box:last-child{border-bottom:none}.values-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav><a href="index.html" class="nav-brand"><div class="nav-logo">TRAVEX <span>DIGITAL</span> GROUP</div><div class="nav-sub">Innovate · Connect · Grow</div></a><div class="nav-links" id="navLinks"><a href="index.html" class="nav-link active">Home</a><a href="story.html" class="nav-link ">Our Story</a><a href="team.html" class="nav-link ">Team</a><a href="products.html" class="nav-link ">Products</a><a href="contact.html" class="nav-link ">Contact</a></div><div class="nav-right"><a href="https://travex-mall.vercel.app" class="btn-visit">Travex Mall →</a><button class="nav-burger" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button></div></nav>
+<!-- HERO -->
+<section class="hero">
+  <div id="ptcls" style="position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden"></div>
+  <div class="hero-glow-left"></div>
+  <div class="hero-glow-right"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <div class="hero-tag">◆ Tanzania's Leading Digital Technology Group — Est. 2026</div>
+    <h1 class="hero-h1">Building Africa's<br><span class="gold">Digital Future</span></h1>
+    <p class="hero-sub" style="margin-top:0.75rem">Travex Digital Group is Tanzania's pioneering technology company — engineering intelligent digital platforms that empower businesses, connect communities and transform lives across Africa.</p>
+    <div class="hero-ctas">
+      <a href="story.html" class="btn-gold">Discover Our Story →</a>
+      <a href="products.html" class="btn-outline">Our Products</a>
+    </div>
+    <div class="hero-stats reveal">
+      <div class="stat-box"><div class="stat-val">2026</div><div class="stat-lbl">Founded</div></div>
+      <div class="stat-box"><div class="stat-val">5+</div><div class="stat-lbl">Products</div></div>
+      <div class="stat-box"><div class="stat-val">3</div><div class="stat-lbl">Live Platforms</div></div>
+      <div class="stat-box"><div class="stat-val">TZ</div><div class="stat-lbl">Tanzania 🇹🇿</div></div>
+    </div>
+  </div>
+</section>
+<div class="gold-line"></div>
+
+<!-- PRODUCTS -->
+<section class="section section-dark">
+  <div class="section-inner">
+    <div class="reveal" style="margin-bottom:3rem">
+      <div class="section-label">// Our Ecosystem</div>
+      <h2 class="section-h2">Five Platforms.<br>One <span class="gold">Digital Ecosystem.</span></h2>
+    </div>
+    <div class="products-grid reveal">
+      <a href="https://travex-mall.vercel.app" class="p-card"><div class="p-card-status status-live">● Live</div><div class="p-card-icon">🏪</div><div class="p-card-name">Travex Mall</div><div class="p-card-desc">Africa's intelligent digital marketplace for Tanzanian businesses — AI-powered tools, verified sellers, WhatsApp ordering.</div><div class="p-card-arrow">Visit Platform →</div></a>
+      <a href="https://travex-mall.vercel.app/campus.html" class="p-card"><div class="p-card-status status-live">● Live</div><div class="p-card-icon">🎓</div><div class="p-card-name">Travex Campus</div><div class="p-card-desc">Tanzania's first verified student marketplace — university entrepreneurs selling directly to their campus community.</div><div class="p-card-arrow">Visit Platform →</div></a>
+      <a href="https://travex-mall.vercel.app/vybe.html" class="p-card"><div class="p-card-status status-live">● Live</div><div class="p-card-icon">✦</div><div class="p-card-name">Travex Social Vybe</div><div class="p-card-desc">Tanzania's Business Social Network. Post. Like. Sell. Built for African entrepreneurs to be seen and go viral.</div><div class="p-card-arrow">Visit Platform →</div></a>
+    </div>
+    <div class="products-grid reveal" style="grid-template-columns:1fr 1fr;max-width:740px">
+      <div class="p-card coming"><div class="p-card-status status-soon">◌ Coming Soon</div><div class="p-card-icon">🏨</div><div class="p-card-name">Travex Stay</div><div class="p-card-desc">Smart accommodation booking for Tanzania. Hotels, lodges and short-stays all in one platform.</div><div class="p-card-arrow" style="color:rgba(255,255,255,0.2)">In Development</div></div>
+      <div class="p-card coming"><div class="p-card-status status-soon">◌ Coming Soon</div><div class="p-card-icon">🚚</div><div class="p-card-name">Travex Move</div><div class="p-card-desc">Intelligent logistics platform connecting businesses to reliable delivery across Tanzania.</div><div class="p-card-arrow" style="color:rgba(255,255,255,0.2)">In Development</div></div>
+    </div>
+  </div>
+</section>
+<div class="gold-line"></div>
+
+<!-- TRAVEX MALL HIGHLIGHT -->
+<section class="section" style="background:var(--navy)">
+  <div class="section-inner">
+    <div class="highlight-layout reveal">
+      <div class="h-left">
+        <div class="section-label">⭐ Flagship Product</div>
+        <h2 class="section-h2">Travex <span class="gold">Mall</span></h2>
+        <p>Our flagship platform — Tanzania's most advanced digital marketplace built with AI at its core. Every Tanzanian business deserves to be visible, competitive and successful in the digital economy.</p>
+        <div class="h-features">
+          <div class="h-feature"><div class="h-dot"></div>AI-powered dashboard — accounting, marketing & customer care</div>
+          <div class="h-feature"><div class="h-dot"></div>3 subscription plans — Basic, Standard & Premium</div>
+          <div class="h-feature"><div class="h-dot"></div>WhatsApp ordering for every product</div>
+          <div class="h-feature"><div class="h-dot"></div>Travex Campus — 5 universities onboarded</div>
+          <div class="h-feature"><div class="h-dot"></div>Travex Social Vybe — integrated social network</div>
+        </div>
+        <a href="https://travex-mall.vercel.app" class="btn-gold">Explore Travex Mall →</a>
+      </div>
+      <div class="h-right">
+        <div class="h-stat-row"><span class="h-stat-label">Platform Status</span><span class="h-stat-value">🟢 Live</span></div>
+        <div class="h-stat-row"><span class="h-stat-label">AI Tools</span><span class="h-stat-value">4 Tools</span></div>
+        <div class="h-stat-row"><span class="h-stat-label">Subscription Plans</span><span class="h-stat-value">3 Plans</span></div>
+        <div class="h-stat-row"><span class="h-stat-label">University Campuses</span><span class="h-stat-value">5 Campuses</span></div>
+        <div class="h-stat-row"><span class="h-stat-label">Coverage</span><span class="h-stat-value">All Tanzania</span></div>
+        <div class="h-stat-row"><span class="h-stat-label">Starting From</span><span class="h-stat-value">TZS 15,000/mo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="gold-line"></div>
+
+<!-- VALUES -->
+<section class="section section-dark">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;margin-bottom:3rem">
+      <div class="section-label" style="display:flex;justify-content:center">// Our Values</div>
+      <h2 class="section-h2" style="text-align:center">What Drives Everything<br>We <span class="gold">Build</span></h2>
+    </div>
+    <div class="values-grid reveal">
+      <div class="v-card"><div class="v-icon">🎯</div><div class="v-title">Purpose-Driven</div><div class="v-text">Every product we build solves a real problem. We build for impact, not for applause.</div></div>
+      <div class="v-card"><div class="v-icon">🌍</div><div class="v-title">Africa First</div><div class="v-text">Built in Tanzania, for Tanzania and Africa. Designed for the unique needs of African businesses.</div></div>
+      <div class="v-card"><div class="v-icon">🤖</div><div class="v-title">AI-Powered</div><div class="v-text">We give every business — regardless of size — access to intelligent tools that drive real growth.</div></div>
+      <div class="v-card"><div class="v-icon">🤝</div><div class="v-title">Community</div><div class="v-text">Our platforms connect buyers, sellers, students and entrepreneurs into one thriving ecosystem.</div></div>
+      <div class="v-card"><div class="v-icon">🔐</div><div class="v-title">Trust & Integrity</div><div class="v-text">Every store is verified. We maintain the highest standards of trust and accountability.</div></div>
+      <div class="v-card"><div class="v-icon">🚀</div><div class="v-title">Innovation</div><div class="v-text">We continuously push boundaries — building tomorrow's solutions for today's African entrepreneurs.</div></div>
+    </div>
+  </div>
+</section>
+<div class="gold-line"></div>
+
+<!-- CTA -->
+<section class="section" style="background:var(--black);text-align:center">
+  <div style="max-width:580px;margin:0 auto" class="reveal">
+    <div class="section-label" style="display:flex;justify-content:center">// Join The Movement</div>
+    <h2 class="section-h2" style="text-align:center">Ready to Take Your Business<br><span class="gold">Digital?</span></h2>
+    <p style="font-size:0.9rem;color:var(--text2);line-height:1.8;margin:1rem auto 2.5rem;font-weight:300">Join Tanzania's fastest growing digital business ecosystem. Start your digital journey today.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://travex-mall.vercel.app/open-store.html" class="btn-gold">Open Your Store →</a>
+      <a href="contact.html" class="btn-outline">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">TRAVEX <span>DIGITAL</span> GROUP</div>
+        <p class="footer-tagline">Innovate · Connect · Grow<br>Building Africa's intelligent digital ecosystem<br>from Dar es Salaam, Tanzania.</p>
+        <div class="footer-contacts">
+          <a href="mailto:travexmall15@gmail.com">📧 travexmall15@gmail.com</a>
+          <a href="https://wa.me/255651919915" target="_blank">💬 +255 651 919 915</a>
+          <a href="https://wa.me/255657575950" target="_blank">💬 +255 657 575 950</a>
+          <a>📍 Dar es Salaam, Tanzania 🇹🇿</a>
+        </div>
+      </div>
+      <div class="f-col">
+        <div class="f-col-title">Company</div>
+        <a href="index.html">Home</a>
+        <a href="story.html">Our Story</a>
+        <a href="team.html">Team</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="f-col">
+        <div class="f-col-title">Products</div>
+        <a href="https://travex-mall.vercel.app">Travex Mall</a>
+        <a href="https://travex-mall.vercel.app/campus.html">Travex Campus</a>
+        <a href="https://travex-mall.vercel.app/vybe.html">Travex Social Vybe</a>
+        <a href="#">Travex Stay</a>
+        <a href="#">Travex Move</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Travex Digital Group. All rights reserved. Incorporated in Tanzania 🇹🇿</div>
+  </div>
+</footer>
+<script>
+// Particles
+const c=document.getElementById("ptcls");
+for(let i=0;i<20;i++){const p=document.createElement("div");p.className="particle";p.style.cssText=`left:${Math.random()*100}%;animation-duration:${12+Math.random()*18}s;animation-delay:${-Math.random()*30}s;opacity:0`;c.appendChild(p);}
+</script>
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach((en,i)=>{if(en.isIntersecting)setTimeout(()=>en.target.classList.add("visible"),i*90)})},{threshold:0.07});
+document.querySelectorAll(".reveal").forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
