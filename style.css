@@ -395,3 +395,31 @@ p, li, .hero-desc, .modal-desc, .story-content p,
 @media (max-width: 480px) {
   .grid-4-col { grid-template-columns: 1fr !important; }
 }
+
+/* ── HERO DARK SHINING (index page) ── */
+.hero-dark {
+  background: linear-gradient(135deg, #080C18 0%, #111827 40%, #0D1B3E 100%);
+  position: relative;
+  overflow: hidden;
+}
+.hero-dark::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero-dark::after {
+  content: '';
+  position: absolute;
+  bottom: -15%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(13,27,62,0.5) 0%, transparent 70%);
+  pointer-events: none;
+}
