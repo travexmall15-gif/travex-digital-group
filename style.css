@@ -1,4 +1,4 @@
-/* ── FONTS — matching hersisaid.tz style ── */
+/* ── FONTS, matching hersisaid.tz style ── */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 
 :root {
@@ -17,7 +17,7 @@
   --border:  #E5E7EB;
   --border2: #F3F4F6;
 
-  /* Accent — dark charcoal/near-black like hersi */
+  /* Accent, dark charcoal/near-black like hersi */
   --gold:    #111827;
   --gold2:   #374151;
   --gold3:   #1F2937;
@@ -243,7 +243,7 @@ p, li, .hero-desc, .modal-desc, .story-content p,
 
 /* ── RESPONSIVE ── */
 /* ═══════════════════════════════
-   MOBILE RESPONSIVE — TRAVEX DG
+   MOBILE RESPONSIVE, TRAVEX DG
    ═══════════════════════════════ */
 
 /* Tablet */
@@ -289,7 +289,7 @@ p, li, .hero-desc, .modal-desc, .story-content p,
     flex-wrap: wrap !important;
   }
 
-  /* HERO METRICS — 2 cols on mobile */
+  /* HERO METRICS, 2 cols on mobile */
   .grid-4-col {
     grid-template-columns: 1fr 1fr !important;
     gap: 20px !important;
@@ -309,14 +309,14 @@ p, li, .hero-desc, .modal-desc, .story-content p,
     gap: 16px !important;
   }
 
-  /* PRODUCTS PAGE — platform status + button */
+  /* PRODUCTS PAGE, platform status + button */
   [style*="display:flex;align-items:flex-start;justify-content:space-between"] {
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 12px !important;
   }
 
-  /* CONTACT — 2 col grid → 1 col */
+  /* CONTACT, 2 col grid → 1 col */
   [style*="grid-template-columns:1fr 1fr"] {
     grid-template-columns: 1fr !important;
   }
@@ -326,7 +326,7 @@ p, li, .hero-desc, .modal-desc, .story-content p,
     grid-template-columns: 1fr !important;
   }
 
-  /* INVESTORS — metrics row */
+  /* INVESTORS, metrics row */
   [style*="grid-template-columns:repeat(4,1fr)"] {
     grid-template-columns: 1fr 1fr !important;
     gap: 12px !important;
