@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://travex-digital-group.vercel.app/sitemap.xml
+Sitemap: https://qnex360.vercel.app/sitemap.xml
 
 User-agent: Googlebot
 Allow: /
