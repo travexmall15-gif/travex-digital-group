@@ -56,21 +56,15 @@ nav {
   border-bottom: 1px solid var(--border);
 }
 .nav-logo {
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center;
   text-decoration: none; flex-shrink: 0;
 }
 .nav-logo img {
-  height: 36px; width: auto; object-fit: contain;
+  height: 48px; width: auto; object-fit: contain;
   border-radius: 0;
 }
-.nav-logo-name {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.1rem; font-weight: 800;
-  letter-spacing: -0.02em; color: var(--dark);
-  line-height: 1;
-}
-.nav-logo-name span { color: #2563EB; }
-.nav-logo span { color: var(--dark); }
+.nav-logo-name { display: none; }
+.nav-logo span { display: none; }
 .nav-links { display: flex; gap: 32px; list-style: none; }
 .nav-links a {
   font-size: 0.875rem; font-weight: 500;
